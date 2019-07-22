@@ -8,6 +8,8 @@ yum install -y --setopt=tsflags=nodocs install yum-utils && \
 yum-config-manager --add-repo http://download.mono-project.com/repo/centos/ && \
 yum install -y --setopt=tsflags=nodocs mono-complete && \
 #
+ln -s /usr/lib64/libdl.so.2 /usr/lib64/libdl.so && \
+#
 yum install -y --setopt=tsflags=nodocs fontconfig && \
 yum install -y --setopt=tsflags=nodocs freetype && \
 yum install -y --setopt=tsflags=nodocs libpng && \
