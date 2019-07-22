@@ -21,11 +21,11 @@ yum install -y --setopt=tsflags=nodocs libXext && \
 yum install -y --setopt=tsflags=nodocs libXrender && \
 yum install -y --setopt=tsflags=nodocs xorg-x11-fonts-Type1 && \
 yum install -y --setopt=tsflags=nodocs xorg-x11-fonts-75dpi && \
-rpm -iv https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox-0.12.5-1.centos7.x86_64.rpm  && \
+rpm -iv https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox-0.12.5-1.centos7.x86_64.rpm && \
 #
 mkdir -p  /opt/app-root/app/Rotativa/Linux/  && \
 #
-ln -s /usr/local/bin/wkhtmltopdf /opt/app-root/app/Rotativa/Linux/wkhtmltopdf  && \
+ln -s /usr/local/bin/wkhtmltopdf /opt/app-root/app/Rotativa/Linux/wkhtmltopdf && \
 ln -s /usr/local/bin/wkhtmltoimage /opt/app-root/app/Rotativa/Linux/wkhtmltoimage  && \
 #
 yum clean all -y && \
