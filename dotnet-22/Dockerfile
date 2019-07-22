@@ -12,6 +12,7 @@ yum install -y --setopt=tsflags=nodocs libXext && \
 yum install -y --setopt=tsflags=nodocs libXrender && \
 yum install -y --setopt=tsflags=nodocs xorg-x11-fonts-Type1 && \
 yum install -y --setopt=tsflags=nodocs xorg-x11-fonts-75dpi && \
+yum install -y --setopt=tsflags=nodocs libgdiplus && \
 rpm -iv https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox-0.12.5-1.centos7.x86_64.rpm  && \
 yum clean all -y && \
 rm -rf /var/cache/yum/*
