@@ -2,6 +2,9 @@ FROM registry.centos.org/dotnet/dotnet-22-centos7:latest
 
 USER 0
 
+COPY ca-trust/*.crt /etc/pki/ca-trust/source/anchors/
+RUN update-ca-trust extract
+
 RUN yum install -y --setopt=tsflags=nodocs install yum-utils && \
 rpm --import https://download.mono-project.com/repo/xamarin.gpg  && \
 curl https://download.mono-project.com/repo/centos7-stable.repo | tee /etc/yum.repos.d/mono-centos7-stable.repo && \
