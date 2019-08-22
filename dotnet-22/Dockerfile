@@ -1,18 +1,22 @@
 FROM registry.centos.org/dotnet/dotnet-22-centos7:latest
 
 USER 0
-
+#
+# Instalação autoridade certificadora local.
 COPY ca-trust/*.crt /etc/pki/ca-trust/source/anchors/
 RUN update-ca-trust extract
-
+#
+# Instalação dependencias comuns .Net-Core
 RUN yum install -y --setopt=tsflags=nodocs install yum-utils && \
 rpm --import https://download.mono-project.com/repo/xamarin.gpg  && \
 curl https://download.mono-project.com/repo/centos7-stable.repo | tee /etc/yum.repos.d/mono-centos7-stable.repo && \
 #
 yum install -y --setopt=tsflags=nodocs mono-complete && \
 #
+# Dependencias para qrCode.
 ln -s /usr/lib64/libdl.so.2 /usr/lib64/libdl.so && \
 #
+# Instalçao dependencias wkhtmltopdf.
 yum install -y --setopt=tsflags=nodocs fontconfig && \
 yum install -y --setopt=tsflags=nodocs freetype && \
 yum install -y --setopt=tsflags=nodocs libpng && \
@@ -31,6 +35,7 @@ mkdir -p  /opt/app-root/app/Rotativa/Linux/  && \
 ln -s /usr/local/bin/wkhtmltopdf /opt/app-root/app/Rotativa/Linux/wkhtmltopdf  && \
 ln -s /usr/local/bin/wkhtmltoimage /opt/app-root/app/Rotativa/Linux/wkhtmltoimage  && \
 #
+# Limpeza de arquivos temporarios.
 yum clean all -y && \
 rm -rf /var/cache/yum/*
 #
