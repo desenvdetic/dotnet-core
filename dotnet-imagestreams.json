@@ -14,7 +14,7 @@
             "metadata": {
                 "name": "dotnet-core",
                 "annotations": {
-                    "openshift.io/display-name": ".NET Core + wkhtmltopdf"
+                    "openshift.io/display-name": ".NET Core + Custom dependencies"
                 }
             },
             "spec": {
@@ -51,7 +51,7 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "registry.hub.docker.com/desenvdetic/dotnet-wkhtmltopdf:dotnet-22"
+                            "name": "registry.hub.docker.com/desenvdetic/dotnet-core:22"
                         }
                     },
                     {
@@ -69,7 +69,7 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "registry.hub.docker.com/desenvdetic/dotnet-wkhtmltopdf:dotnet-21"
+                            "name": "registry.hub.docker.com/desenvdetic/dotnet-core:21"
                         }
                     }
                 ]
@@ -81,7 +81,7 @@
             "metadata": {
                 "name": "dotnet-runtime",
                 "annotations": {
-                    "openshift.io/display-name": ".NET Core Runtime + wkhtmltopdf"
+                    "openshift.io/display-name": ".NET Core Runtime + Custom dependencies"
                 }
             },
             "spec": {
@@ -112,7 +112,7 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "registry.hub.docker.com/desenvdetic/dotnet-wkhtmltopdf:dotnet-22-runtime"
+                            "name": "registry.hub.docker.com/desenvdetic/dotnet-core:22-runtime"
                         }
                     },
                     {
@@ -127,7 +127,7 @@
                         },
                         "from": {
                             "kind": "DockerImage",
-                            "name": "registry.hub.docker.com/desenvdetic/dotnet-wkhtmltopdf:dotnet-21-runtime"
+                            "name": "registry.hub.docker.com/desenvdetic/dotnet-core:21-runtime"
                         }
                     }
                 ]
