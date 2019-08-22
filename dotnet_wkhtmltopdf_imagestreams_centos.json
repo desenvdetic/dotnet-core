@@ -71,7 +71,7 @@
                             "kind": "DockerImage",
                             "name": "registry.hub.docker.com/desenvdetic/dotnet-wkhtmltopdf:dotnet-21"
                         }
-                    },
+                    }
                 ]
             }
         },
@@ -129,7 +129,7 @@
                             "kind": "DockerImage",
                             "name": "registry.hub.docker.com/desenvdetic/dotnet-wkhtmltopdf:dotnet-21-runtime"
                         }
-                    },
+                    }
                 ]
             }
         }
