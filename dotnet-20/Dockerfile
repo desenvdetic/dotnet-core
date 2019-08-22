@@ -1,4 +1,4 @@
-FROM registry.centos.org/dotnet/dotnet-20-centos7:latest
+FROM registry.centos.org/dharmit/dotnet20:latest
 
 USER 0
 
