@@ -14,7 +14,15 @@ update-ca-trust extract && \
 # cp -r ../ca-trust/*.crt /etc/pki/ca-trust/source/anchors/ && update-ca-trust extract && \
 rpm --import https://download.mono-project.com/repo/xamarin.gpg  && \
 curl https://download.mono-project.com/repo/centos7-stable.repo | tee /etc/yum.repos.d/mono-centos7-stable.repo && \
-#
+##
+rpm -i http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && \
+yum install -y --setopt=tsflags=nodocs --enablerepo=epel \
+cabextract \
+curl \
+fontconfig \
+xorg-x11-font-utils && \
+rpm -i https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm && \
+##
 yum install -y --setopt=tsflags=nodocs \
 mono-complete \
 #
@@ -29,8 +37,10 @@ libX11 \
 libXext \
 libXrender \
 xorg-x11-fonts-Type1 \
-xorg-x11-fonts-75dpi && \
-rpm -iv https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox-0.12.5-1.centos7.x86_64.rpm  && \
+xorg-x11-fonts-75dpi \
+xorg-x11-fonts-100dpi && \
+#
+rpm -i https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox-0.12.5-1.centos7.x86_64.rpm  && \
 #
 mkdir -p  /opt/app-root/app/Rotativa/Linux/  && \
 #
