@@ -39,10 +39,6 @@ yum install -y --setopt=tsflags=nodocs --enablerepo=epel \
 cabextract \
 curl \
 fontconfig \
-htop \
-iotop \
-iostat \
-atop \
 xorg-x11-font-utils && \
 rpm -i https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm && \
 ##
