@@ -39,6 +39,7 @@ yum install -y --setopt=tsflags=nodocs --enablerepo=epel \
 cabextract \
 curl \
 fontconfig \
+htop \
 xorg-x11-font-utils && \
 rpm -i https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm && \
 ##
@@ -57,7 +58,7 @@ rm -rf /var/cache/yum/* && \
 chown -R 1001:0 /opt/app-root && fix-permissions /opt/app-root
 #
 # Run container by default as user with id 1001 (default)
-USER 1001
+USER 0
 #
 # Set the default CMD to print the usage of the language image.
 CMD /usr/libexec/s2i/usage
