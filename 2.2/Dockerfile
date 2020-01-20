@@ -61,7 +61,7 @@ rm -rf /var/cache/yum/* && \
 chown -R 1001:0 /opt/app-root && fix-permissions /opt/app-root
 #
 # Run container by default as user with id 1001 (default)
-USER 0
+USER 1001
 #
 # Set the default CMD to print the usage of the language image.
 CMD /usr/libexec/s2i/usage
