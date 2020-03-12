@@ -1,4 +1,9 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
+FROM centos AS base
 
-COPY ca-trust/*.crt /usr/local/share/ca-certificates/extra/
-RUN update-ca-certificates
+RUN rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
+RUN yum -y install dotnet-sdk-3.1
+RUN yum -y install aspnetcore-runtime-3.1
+RUN yum -y install dotnet-runtime-3.1
+
+COPY ca-trust/*.crt /etc/pki/ca-trust/source/anchors/
+RUN update-ca-trust extract
