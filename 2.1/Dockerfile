@@ -1,5 +1,6 @@
 FROM registry.centos.org/dotnet/dotnet-21-centos7:latest
 #
+ENV TZ "America/Porto_Velho"
 # Run container with root user.
 USER 0
 #
