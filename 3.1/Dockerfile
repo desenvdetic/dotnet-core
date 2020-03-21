@@ -3,6 +3,7 @@ FROM registry.centos.org/dotnet/dotnet-31-centos7:latest
 # Run container with root user.
 USER 0
 #
+ENV TZ "America/Porto_Velho"
 # Instalação de autoridade certificadora local.
 COPY ca-trust/*.crt /etc/pki/ca-trust/source/anchors/
 # RUN update-ca-trust extract
