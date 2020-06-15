@@ -10,6 +10,18 @@ COPY ca-trust/*.crt /etc/pki/ca-trust/source/anchors/
 #
 # Instalação dependencias comuns .Net-Core
 # RUN yum install -y --setopt=tsflags=nodocs install yum-utils && \
+
+######### AppDynamics
+RUN mkdir -p /opt/appdynamics/dotnet
+ADD libappdprofiler.so /opt/appdynamics/dotnet/
+ADD AppDynamics.Agent.netstandard.dll /opt/appdynamics/dotnet/
+
+# Mandatory settings required to attach the agent to the .NET application
+ENV CORECLR_PROFILER={57e1aa68-2229-41aa-9931-a6e93bbc64d8} \
+    CORECLR_ENABLE_PROFILING=1 \
+    CORECLR_PROFILER_PATH=/opt/appdynamics/dotnet/libappdprofiler.so
+#########
+
 RUN \
 update-ca-trust extract && \
 # cp -r ../ca-trust/*.crt /etc/pki/ca-trust/source/anchors/ && update-ca-trust extract && \
@@ -51,18 +63,6 @@ ln -s /usr/local/bin/wkhtmltoimage /opt/app-root/app/Rotativa/Linux/wkhtmltoimag
 # Dependencias para qrCode.
 ln -s /usr/lib64/libdl.so.2 /usr/lib64/libdl.so && \
 #
-
-######### AppDynamics
-RUN mkdir -p /opt/appdynamics/dotnet
-ADD libappdprofiler.so /opt/appdynamics/dotnet/
-ADD AppDynamics.Agent.netstandard.dll /opt/appdynamics/dotnet/
-
-# Mandatory settings required to attach the agent to the .NET application
-ENV CORECLR_PROFILER={57e1aa68-2229-41aa-9931-a6e93bbc64d8} \
-    CORECLR_ENABLE_PROFILING=1 \
-    CORECLR_PROFILER_PATH=/opt/appdynamics/dotnet/libappdprofiler.so
-#########
-
 # Limpeza de arquivos temporarios.
 yum clean all -y && \
 rm -rf /var/cache/yum/* && \
