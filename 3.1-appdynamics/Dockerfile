@@ -52,48 +52,6 @@ RUN \
     ln -s /usr/lib64/libdl.so.2 /usr/lib64/libdl.so && \
     #
     #########
-    ####### Requirements
-    # Have the following files alongside the Dockerfile:
-    # * libappdprofiler.so
-    # * AppDynamics.Agent.netstandard.dll
-
-    ####### Instructions
-    # Building image: docker build --rm -t appdynamicstest:latest .
-    # Running container: docker run --rm -p 8000:80 appdynamicstest:latest
-    # Open the application using http://localhost:8000/
-
-    # Copy agent binaries to the image from current folder
-    RUN mkdir -p /opt/appdynamics/dotnet
-ADD libappdprofiler.so /opt/appdynamics/dotnet/
-ADD AppDynamics.Agent.netstandard.dll /opt/appdynamics/dotnet/
-
-# Mandatory settings required to attach the agent to the .NET application
-ENV CORECLR_PROFILER={57e1aa68-2229-41aa-9931-a6e93bbc64d8} \
-    CORECLR_ENABLE_PROFILING=1 \
-    CORECLR_PROFILER_PATH=/opt/appdynamics/dotnet/libappdprofiler.so
-
-# Configure connection to the controller
-ENV APPDYNAMICS_CONTROLLER_HOST_NAME=controller.saas.appdynamics.com
-ENV APPDYNAMICS_CONTROLLER_PORT=443
-ENV APPDYNAMICS_CONTROLLER_SSL_ENABLED=true
-ENV APPDYNAMICS_AGENT_ACCOUNT_NAME=account-name
-ENV APPDYNAMICS_AGENT_ACCOUNT_ACCESS_KEY=access-key
-
-# Configure application identity in AppDynamics
-ENV APPDYNAMICS_AGENT_APPLICATION_NAME="My Application"
-ENV APPDYNAMICS_AGENT_TIER_NAME="Sample Tier"
-ENV APPDYNAMICS_AGENT_REUSE_NODE_NAME=true
-ENV APPDYNAMICS_AGENT_REUSE_NODE_NAME_PREFIX="Instance"
-
-# It is possible to configure .NET agent using AppDynamicsConfig.json configuration file instead of environment variables
-# ADD AppDynamicsConfig.json /opt/appdynamics/dotnet/
-#########
-# Limpeza de arquivos temporarios.
-yum clean all -y && \
-    rm -rf /var/cache/yum/* && \
-    #
-    chown -R 1001:0 /opt/app-root && fix-permissions /opt/app-root
-
 ## AppDynamics
 RUN mkdir -p /opt/appdynamics/dotnet
 ADD libappdprofiler.so /opt/appdynamics/dotnet/
@@ -119,7 +77,12 @@ ENV APPDYNAMICS_AGENT_REUSE_NODE_NAME_PREFIX="pod"
 
 # It is possible to configure .NET agent using AppDynamicsConfig.json configuration file instead of environment variables
 # ADD AppDynamicsConfig.json /opt/appdynamics/dotnet/
-
+#########
+# Limpeza de arquivos temporarios.
+yum clean all -y && \
+    rm -rf /var/cache/yum/* && \
+    #
+    chown -R 1001:0 /opt/app-root && fix-permissions /opt/app-root
 #
 # Run container by default as user with id 1001 (default)
 USER 1001
