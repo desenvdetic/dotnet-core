@@ -51,8 +51,8 @@ RUN \
     # Dependencias para qrCode.
     ln -s /usr/lib64/libdl.so.2 /usr/lib64/libdl.so && \
     #
-    #########
-## AppDynamics
+    
+######### AppDynamics
 RUN mkdir -p /opt/appdynamics/dotnet
 ADD libappdprofiler.so /opt/appdynamics/dotnet/
 ADD AppDynamics.Agent.netstandard.dll /opt/appdynamics/dotnet/
@@ -74,10 +74,8 @@ ENV APPDYNAMICS_AGENT_APPLICATION_NAME="Sif"
 ENV APPDYNAMICS_AGENT_TIER_NAME="Front-end"
 ENV APPDYNAMICS_AGENT_REUSE_NODE_NAME=true
 ENV APPDYNAMICS_AGENT_REUSE_NODE_NAME_PREFIX="pod"
-
-# It is possible to configure .NET agent using AppDynamicsConfig.json configuration file instead of environment variables
-# ADD AppDynamicsConfig.json /opt/appdynamics/dotnet/
 #########
+
 # Limpeza de arquivos temporarios.
 yum clean all -y && \
     rm -rf /var/cache/yum/* && \
