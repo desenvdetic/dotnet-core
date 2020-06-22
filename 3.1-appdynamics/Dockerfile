@@ -63,8 +63,10 @@ RUN \
     # Dependencias para qrCode.
     ln -s /usr/lib64/libdl.so.2 /usr/lib64/libdl.so && \
     #
-# Limpeza de arquivos temporarios.
-yum clean all -y && \
+    #Instalação do pacotes para visualização e escrita de imagens
+    yum whatprovides libgdiplus libc6-dev \
+    # Limpeza de arquivos temporarios.
+    yum clean all -y && \
     rm -rf /var/cache/yum/* && \
     #
     chown -R 1001:0 /opt/app-root && fix-permissions /opt/app-root
