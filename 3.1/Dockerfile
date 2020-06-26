@@ -52,7 +52,7 @@ RUN \
   ln -s /usr/lib64/libdl.so.2 /usr/lib64/libdl.so && \
   #
   #Instalação do pacotes para visualização e escrita de imagens
-  yum whatprovides libgdiplus libc6-dev \
+  yum install -y whatprovides libgdiplus libc6-dev \
   # Limpeza de arquivos temporarios.
   yum clean all -y && \
   rm -rf /var/cache/yum/* && \
