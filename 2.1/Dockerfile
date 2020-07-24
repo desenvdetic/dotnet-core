@@ -33,7 +33,7 @@ xorg-x11-fonts-Type1 \
 xorg-x11-fonts-75dpi \
 xorg-x11-fonts-100dpi && \
 #
-rpm -i https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox-0.12.5-1.centos7.x86_64.rpm  && \
+rpm -i https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox-0.12.6-1.centos7.x86_64.rpm  && \
 ##
 rpm -i http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && \
 yum install -y --setopt=tsflags=nodocs --enablerepo=epel \
