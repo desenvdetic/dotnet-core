@@ -1,4 +1,4 @@
-FROM centos AS base
+FROM centos AS builder
 
 ENV TZ "America/Porto_Velho"
 

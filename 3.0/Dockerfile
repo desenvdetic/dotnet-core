@@ -1,4 +1,4 @@
-FROM registry.centos.org/dotnet/dotnet-30-centos7:latest
+FROM registry.centos.org/dotnet/dotnet-30-centos7:latest AS builder
 #
 ENV TZ "America/Porto_Velho"
 # Run container with root user.
