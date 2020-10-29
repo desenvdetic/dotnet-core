@@ -1,9 +1,11 @@
 FROM registry.centos.org/dotnet/dotnet-22-centos7:latest AS builder
 #
-ENV TZ "America/Porto_Velho"
 # Run container with root user.
 USER 0
 #
+ENV TZ "America/Porto_Velho"
+ENV DOTNET_INCREMENTAL=True
+ENV DOTNET_RESTORE_DISABLE_PARALLEL=True
 # Instalação de autoridade certificadora local.
 COPY ca-trust/*.crt /etc/pki/ca-trust/source/anchors/
 # RUN update-ca-trust extract
