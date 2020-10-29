@@ -9,7 +9,7 @@ RUN dnf install -y --setopt=tsflags=nodocs dotnet-sdk-3.1 aspnetcore-runtime-3.1
 	&& dnf clean all \
 	&& rm -rf /var/cache/yum
 
-ENV ASPNETCORE_URLS=http://+:80;https://+:443
-ENV ASPNETCORE_HTTPS_PORT=443
+#ENV ASPNETCORE_URLS=http://+:80;https://+:443
+#ENV ASPNETCORE_HTTPS_PORT=443
 
-EXPOSE 80 443
+#EXPOSE 80 443
