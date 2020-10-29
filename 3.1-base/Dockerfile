@@ -1,6 +1,8 @@
 FROM centos AS builder
 
 ENV TZ "America/Porto_Velho"
+ENV DOTNET_INCREMENTAL=True
+ENV DOTNET_RESTORE_DISABLE_PARALLEL=True
 
 RUN rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
 RUN yum -y install dotnet-sdk-3.1
