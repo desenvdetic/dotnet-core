@@ -1,4 +1,4 @@
-FROM registry.centos.org/dotnet/dotnet-31-centos7:latest AS builder
+FROM registry.centos.org/dotnet/dotnet-31-centos7:latest
 #
 # Run container with root user.
 USER 0
