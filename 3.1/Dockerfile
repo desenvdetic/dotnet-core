@@ -1,4 +1,4 @@
-FROM registry.centos.org/dotnet/dotnet-31-centos7:latest
+FROM registry.centos.org/dotnet/dotnet-31-centos7:latest AS builder
 #
 # Run container with root user.
 USER 0
@@ -8,20 +8,18 @@ ENV DOTNET_INCREMENTAL=True
 ENV DOTNET_RESTORE_DISABLE_PARALLEL=True
 # Instalação de autoridade certificadora local.
 COPY ca-trust/*.crt /etc/pki/ca-trust/source/anchors/
-# RUN update-ca-trust extract
 #
 # Instalação dependencias comuns .Net-Core
-# RUN yum install -y --setopt=tsflags=nodocs install yum-utils && \
-RUN \
-  update-ca-trust extract && \
-  # cp -r ../ca-trust/*.crt /etc/pki/ca-trust/source/anchors/ && update-ca-trust extract && \
-  #rpm --import https://download.mono-project.com/repo/xamarin.gpg  && \
-  #curl https://download.mono-project.com/repo/centos7-stable.repo | tee /etc/yum.repos.d/mono-centos7-stable.repo && \
-  #
-  yum install -y --setopt=tsflags=nodocs \
-  #mono-complete \
-  #
-  # Instalçao dependencias wkhtmltopdf.
+RUN yum -y update && yum install -y yum-utils
+RUN update-ca-trust extract && rpm -i https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
+#RUN yum install -y --setopt=tsflags=nodocs
+RUN rpmkeys --import "http://pool.sks-keyservers.net/pks/lookup?op=get&search=0x3fa7e0328081bff6a14da29aa6a19b38d3d831ef"
+RUN su -c 'curl https://download.mono-project.com/repo/centos7-stable.repo | tee /etc/yum.repos.d/mono-centos7-stable.repo'
+RUN yum install -y mono-complete
+#
+# Instalçao dependencias wkhtmltopdf.
+RUN yum install -y \
+  wget \
   fontconfig \
   freetype \
   libpng \
@@ -35,7 +33,8 @@ RUN \
   xorg-x11-fonts-75dpi \
   xorg-x11-fonts-100dpi && \
   #
-  rpm -i https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox-0.12.6-1.centos7.x86_64.rpm  && \
+  wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox-0.12.6-1.centos7.x86_64.rpm && \
+  rpm -Uvh wkhtmltox-0.12.6-1.centos7.x86_64.rpm && \
   ##
   rpm -i http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && \
   yum install -y --setopt=tsflags=nodocs --enablerepo=epel \
@@ -45,7 +44,7 @@ RUN \
   xorg-x11-font-utils && \
   rpm -i https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm && \
   ##
-  mkdir -p  /opt/app-root/app/Rotativa/Linux/  && \
+  mkdir -p /opt/app-root/app/Rotativa/Linux/ && \
   #
   ln -s /usr/local/bin/wkhtmltopdf /opt/app-root/app/Rotativa/Linux/wkhtmltopdf  && \
   ln -s /usr/local/bin/wkhtmltoimage /opt/app-root/app/Rotativa/Linux/wkhtmltoimage  && \
@@ -54,7 +53,7 @@ RUN \
   ln -s /usr/lib64/libdl.so.2 /usr/lib64/libdl.so && \
   #
   #Instalação do pacotes para visualização e escrita de imagens
-  yum install -y whatprovides libgdiplus libc6-dev \
+  yum install -y whatprovides libgdiplus libc6 libc6-dev glibc glibc-devel \
   # Limpeza de arquivos temporarios.
   yum clean all -y && \
   rm -rf /var/cache/yum/* && \
