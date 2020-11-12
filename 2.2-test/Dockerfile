@@ -8,7 +8,6 @@ ENV DOTNET_INCREMENTAL=True
 ENV DOTNET_RESTORE_DISABLE_PARALLEL=True
 # Instalação de autoridade certificadora local.
 COPY ca-trust/*.crt /etc/pki/ca-trust/source/anchors/
-# RUN update-ca-trust extract
 #
 # Instalação dependencias comuns .Net-Core
 RUN yum -y update && yum install -y yum-utils
