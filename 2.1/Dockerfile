@@ -5,8 +5,8 @@ USER 0
 #
 ENV TZ "America/Porto_Velho"
 ENV DOTNET_NUGET_SOURCES "https://nuget.okd.local/repository/nuget-group/"
-ENV DOTNET_RESTORE_SOURCES "https://nuget.okd.local/repository/nuget-group/"
-ENV PACKAGE_SOURCE_PATH "https://nuget.okd.local/repository/nuget-group/"
+#ENV DOTNET_RESTORE_SOURCES "https://nuget.okd.local/repository/nuget-group/"
+#ENV PACKAGE_SOURCE_PATH "https://nuget.okd.local/repository/nuget-group/"
 #ENV DOTNET_INCREMENTAL=True
 #ENV DOTNET_RESTORE_DISABLE_PARALLEL=True
 # Instalação de autoridade certificadora local.
