@@ -3,18 +3,19 @@ FROM registry.centos.org/dotnet/dotnet-31-centos7:latest AS builder
 # Run container with root user.
 USER 0
 #
-ENV TZ "America/Porto_Velho"
-ENV DOTNET_NUGET_SOURCES "https://nuget.okd.local/repository/nuget-group/"
+#ENV TZ "America/Porto_Velho"
+#ENV DOTNET_NUGET_SOURCES "https://nuget.okd.local/repository/nuget-group/"
 #ENV DOTNET_RESTORE_SOURCES "https://nuget.okd.local/repository/nuget-group/"
 #ENV PACKAGE_SOURCE_PATH "https://nuget.okd.local/repository/nuget-group/"
 #ENV DOTNET_INCREMENTAL=True
 #ENV DOTNET_RESTORE_DISABLE_PARALLEL=True
-# Instalação de autoridade certificadora local.
-COPY ca-trust/*.crt /etc/pki/ca-trust/source/anchors/
 #
+# INSTALAÇÃO DE AUTORIDADE CERTIFICADORA NO CENTOS
+ADD https://raw.githubusercontent.com/desenvdetic/ca-trust/main/rootCA.crt /etc/pki/ca-trust/source/anchors/
+RUN update-ca-trust extract
 # Instalação dependencias comuns .Net-Core
 RUN yum -y update && yum install -y yum-utils
-RUN update-ca-trust extract && rpm -i https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
+RUN rpm -i https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
 #RUN yum install -y --setopt=tsflags=nodocs
 RUN rpmkeys --import "http://pool.sks-keyservers.net/pks/lookup?op=get&search=0x3fa7e0328081bff6a14da29aa6a19b38d3d831ef"
 RUN su -c 'curl https://download.mono-project.com/repo/centos7-stable.repo | tee /etc/yum.repos.d/mono-centos7-stable.repo'
