@@ -1,17 +1,16 @@
-FROM registry.centos.org/dotnet/dotnet-31-centos7:latest AS builder
+FROM registry.centos.org/dotnet/dotnet-31-centos7:latest
 #
 # Run container with root user.
 USER 0
 #
 ENV TZ "America/Porto_Velho"
 ENV DOTNET_NUGET_SOURCES "https://nuget.okd.local/repository/nuget-group/"
-#ENV DOTNET_RESTORE_SOURCES "https://nuget.okd.local/repository/nuget-group/"
-#ENV PACKAGE_SOURCE_PATH "https://nuget.okd.local/repository/nuget-group/"
-#ENV DOTNET_INCREMENTAL=True
-#ENV DOTNET_RESTORE_DISABLE_PARALLEL=True
+ENV DOTNET_INCREMENTAL=False
+ENV DOTNET_RESTORE_DISABLE_PARALLEL=False
 #
-# Instalação de autoridade certificadora local.
-COPY ca-trust/*.crt /etc/pki/ca-trust/source/anchors/
+# INSTALAÇÃO DE AUTORIDADE CERTIFICADORA NO CENTOS
+ADD https://raw.githubusercontent.com/desenvdetic/ca-trust/main/rootCA.crt /etc/pki/ca-trust/source/anchors/
+RUN update-ca-trust extract
 # Instalação dependencias comuns .Net-Core
 RUN yum -y update && yum install -y yum-utils
 RUN update-ca-trust extract && rpm -i https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm

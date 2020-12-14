@@ -1,22 +1,20 @@
-FROM registry.centos.org/dotnet/dotnet-21-centos7:latest AS builder
+FROM registry.centos.org/dotnet/dotnet-21-centos7:latest
 #
 # Run container with root user.
 USER 0
 #
 ENV TZ "America/Porto_Velho"
 ENV DOTNET_NUGET_SOURCES "https://nuget.okd.local/repository/nuget-group/"
-#ENV DOTNET_RESTORE_SOURCES "https://nuget.okd.local/repository/nuget-group/"
-#ENV PACKAGE_SOURCE_PATH "https://nuget.okd.local/repository/nuget-group/"
-#ENV DOTNET_INCREMENTAL=True
-#ENV DOTNET_RESTORE_DISABLE_PARALLEL=True
-# Instalação de autoridade certificadora local.
-COPY ca-trust/*.crt /etc/pki/ca-trust/source/anchors/
-# RUN update-ca-trust extract
+ENV DOTNET_INCREMENTAL=False
+ENV DOTNET_RESTORE_DISABLE_PARALLEL=False
+# INSTALAÇÃO DE AUTORIDADE CERTIFICADORA NO CENTOS
+ADD https://raw.githubusercontent.com/desenvdetic/ca-trust/main/rootCA.crt /etc/pki/ca-trust/source/anchors/
+RUN update-ca-trust extract
 #
 # Instalação dependencias comuns .Net-Core
 # RUN yum install -y --setopt=tsflags=nodocs install yum-utils && \
 RUN \
-update-ca-trust extract && \
+
 # cp -r ../ca-trust/*.crt /etc/pki/ca-trust/source/anchors/ && update-ca-trust extract && \
 #rpm --import https://download.mono-project.com/repo/xamarin.gpg  && \
 #curl https://download.mono-project.com/repo/centos7-stable.repo | tee /etc/yum.repos.d/mono-centos7-stable.repo && \
