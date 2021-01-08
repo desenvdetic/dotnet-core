@@ -3,6 +3,11 @@ FROM registry.centos.org/dotnet/dotnet-22-centos7:latest
 # Run container with root user.
 USER 0
 #
+ENV TZ "America/Porto_Velho"
+ENV DOTNET_NUGET_SOURCES "https://nuget.okd.local/repository/nuget-group/"
+ENV DOTNET_INCREMENTAL=False
+ENV DOTNET_RESTORE_DISABLE_PARALLEL=False
+#
 # INSTALAÇÃO DE AUTORIDADE CERTIFICADORA NO CENTOS
 ADD https://raw.githubusercontent.com/desenvdetic/ca-trust/main/rootCA.crt /etc/pki/ca-trust/source/anchors/
 RUN update-ca-trust extract
