@@ -11,8 +11,6 @@ RUN dnf install -y --setopt=tsflags=nodocs dotnet-sdk-3.1 aspnetcore-runtime-3.1
 
 ENV TZ "America/Porto_Velho"
 ENV DOTNET_NUGET_SOURCES "https://nuget.okd.local/repository/nuget-group/"
-ENV DOTNET_INCREMENTAL=False
-ENV DOTNET_RESTORE_DISABLE_PARALLEL=False
 #ENV ASPNETCORE_URLS=http://+:80;https://+:443
 #ENV ASPNETCORE_HTTPS_PORT=443
 
