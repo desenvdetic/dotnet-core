@@ -11,7 +11,7 @@ RUN update-ca-trust extract
 #
 # Instalação dependencias comuns .Net-Core
 # RUN yum install -y --setopt=tsflags=nodocs install yum-utils && \
-
+#
 ######### AppDynamics
 RUN mkdir -p /opt/appdynamics/dotnet
 ADD libappdprofiler.so /opt/appdynamics/dotnet/
