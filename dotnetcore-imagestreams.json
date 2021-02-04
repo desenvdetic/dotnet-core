@@ -59,24 +59,6 @@
                         }
                     },
                     {
-                        "name": "3.1-appdynamics",
-                        "annotations": {
-                            "openshift.io/display-name": ".NET Core 3.1 AppDynamics",
-                            "description": "Build and run .NET Core 3.1 applications on CentOS 7. For more information about using this builder image, including OpenShift considerations, see https://github.com/redhat-developer/s2i-dotnetcore/tree/master/3.1/build/README.md.",
-                            "iconClass": "icon-dotnet",
-                            "tags": "builder,.net,dotnet,dotnetcore,rh-dotnet31",
-                            "supports": "dotnet:3.1,dotnet",
-                            "sampleRepo": "https://github.com/redhat-developer/s2i-dotnetcore-ex.git",
-                            "sampleContextDir": "app",
-                            "sampleRef": "dotnetcore-3.1",
-                            "version": "3.1"
-                        },
-                        "from": {
-                            "kind": "DockerImage",
-                            "name": "quay.io/desenvdetic/dotnet-core:3.1-appdynamics"
-                        }
-                    },
-                    {
                         "name": "2.2",
                         "annotations": {
                             "openshift.io/display-name": ".NET Core 2.2",
@@ -92,24 +74,6 @@
                         "from": {
                             "kind": "DockerImage",
                             "name": "quay.io/desenvdetic/dotnet-core:2.2"
-                        }
-                    },
-                    {
-                        "name": "2.2-appdynamics",
-                        "annotations": {
-                            "openshift.io/display-name": ".NET Core 2.2 AppDynamics",
-                            "description": "Build and run .NET Core 2.2 applications on CentOS 7. For more information about using this builder image, including OpenShift considerations, see https://github.com/redhat-developer/s2i-dotnetcore/tree/master/2.2/build/README.md.",
-                            "iconClass": "icon-dotnet",
-                            "tags": "builder,.net,dotnet,dotnetcore,rh-dotnet22",
-                            "supports": "dotnet:2.2,dotnet",
-                            "sampleRepo": "https://github.com/redhat-developer/s2i-dotnetcore-ex.git",
-                            "sampleContextDir": "app",
-                            "sampleRef": "dotnetcore-2.2",
-                            "version": "2.2"
-                        },
-                        "from": {
-                            "kind": "DockerImage",
-                            "name": "quay.io/desenvdetic/dotnet-core:2.2-appdynamics"
                         }
                     },
                     {
