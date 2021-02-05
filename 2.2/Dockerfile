@@ -8,6 +8,7 @@ ENV DOTNET_NUGET_SOURCES "https://nuget.okd.local/repository/nuget-group/"
 ENV DOTNET_RESTORE_SOURCES "https://nuget.okd.local/repository/nuget-group/"
 ENV DOTNET_INCREMENTAL=False
 ENV DOTNET_RESTORE_DISABLE_PARALLEL=False
+ENV DOTNET_VERBOSITY=diag
 #
 # INSTALAÇÃO DE AUTORIDADE CERTIFICADORA NO CENTOS
 ADD https://raw.githubusercontent.com/desenvdetic/ca-trust/main/rootCA.crt /etc/pki/ca-trust/source/anchors/
