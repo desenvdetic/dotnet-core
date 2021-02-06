@@ -16,7 +16,6 @@ RUN update-ca-trust extract
 # Instalação dependencias comuns .Net-Core
 # RUN yum install -y --setopt=tsflags=nodocs install yum-utils && \
 RUN \
-
 # cp -r ../ca-trust/*.crt /etc/pki/ca-trust/source/anchors/ && update-ca-trust extract && \
 #rpm --import https://download.mono-project.com/repo/xamarin.gpg  && \
 #curl https://download.mono-project.com/repo/centos7-stable.repo | tee /etc/yum.repos.d/mono-centos7-stable.repo && \
